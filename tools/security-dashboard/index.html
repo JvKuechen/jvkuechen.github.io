@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Dashboard</title>
+    <meta name="description" content="Personal security assessment tool - discover your security gaps and get actionable recommendations">
+    <!-- Bootstrap + Portfolio Theme -->
+    <link href="../../lib/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/agency.css" rel="stylesheet">
+    <link href="../../fonts/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../../favicon.svg">
+    <link rel="stylesheet" href="../../css/theme-vars.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="page-top">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../" id="nav-brand">jvkuechen</a>
+            </div>
+            <div class="collapse navbar-collapse" id="nav-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a class="nav-link active" href="#assess" data-section="assess">Assess</a></li>
+                    <li><a class="nav-link" href="#tasks" data-section="tasks">Tasks</a></li>
+                    <li><a href="../../wiki/#/articles/security/">Articles</a></li>
+                    <li><a href="../../">Portfolio</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="security-header">
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-lead-in">Personal Security Dashboard</div>
+                <div class="intro-heading">Protect Your Digital Life</div>
+                <p class="intro-subtext">Answer a few questions to get personalized security recommendations</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Assessment Section -->
+    <section id="assess" class="section-page active">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Security Assessment</h2>
+                    <h3 class="section-subheading text-muted" id="assessment-subtitle">Quick check - 3 questions</h3>
+                </div>
+            </div>
+
+            <!-- Assessment Mode Toggle -->
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="assessment-mode-toggle">
+                        <button class="mode-btn active" data-mode="quick">
+                            <i class="fa fa-bolt"></i> Quick Check
+                            <span class="mode-desc">3 critical questions</span>
+                        </button>
+                        <button class="mode-btn" data-mode="full">
+                            <i class="fa fa-list-alt"></i> Full Assessment
+                            <span class="mode-desc">12 comprehensive questions</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top Priority Alert -->
+            <div class="row" id="top-priority-row" style="display: none;">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="alert alert-warning top-priority-alert">
+                        <h4><i class="fa fa-exclamation-triangle"></i> Your Top Priority</h4>
+                        <p id="top-priority-title"></p>
+                        <p class="text-muted" id="top-priority-desc"></p>
+                        <button class="btn btn-primary btn-sm" id="top-priority-btn">Start Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Questionnaire -->
+                <div class="col-md-7">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 id="questionnaire-title">Critical Security Questions</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div id="questionnaire-container">
+                                <!-- Questions rendered dynamically -->
+                            </div>
+
+                            <!-- Continue to Full Assessment (shown after Quick is complete) -->
+                            <div id="continue-full" class="continue-assessment" style="display: none;">
+                                <hr>
+                                <p class="text-center">
+                                    <i class="fa fa-check-circle text-success"></i>
+                                    Critical questions complete!
+                                </p>
+                                <p class="text-center text-muted">
+                                    Want a deeper assessment? Answer 9 more questions for comprehensive recommendations.
+                                </p>
+                                <button class="btn btn-default btn-block" id="expand-to-full">
+                                    <i class="fa fa-plus"></i> Continue to Full Assessment
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Score Display -->
+                <div class="col-md-5">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4>Your Security Score</h4>
+                        </div>
+                        <div class="panel-body text-center">
+                            <div class="score-circle" id="score-circle">
+                                <div class="score-value" id="score-value">--</div>
+                                <div class="score-label">SCORE</div>
+                            </div>
+                            <div class="score-level" id="score-level"></div>
+                            <div id="score-breakdown">
+                                <p class="text-muted">Complete the assessment to see your score</p>
+                            </div>
+
+                            <!-- Expandable Score Detail (for portfolio viewers) -->
+                            <div id="score-detail-toggle" style="display: none;">
+                                <button class="btn btn-xs btn-link" id="toggle-breakdown">
+                                    <i class="fa fa-chevron-down"></i> Show scoring breakdown
+                                </button>
+                            </div>
+                            <div id="score-detail" class="score-detail" style="display: none;">
+                                <table class="table table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>Category</th>
+                                            <th>Score</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="score-detail-body">
+                                    </tbody>
+                                </table>
+                                <p class="text-muted small">
+                                    <i class="fa fa-info-circle"></i>
+                                    Tasks prioritized by (weight x risk) / time
+                                </p>
+                                <p class="text-muted small">
+                                    <i class="fa fa-lock"></i>
+                                    Data stored locally, never sent to server
+                                </p>
+                            </div>
+
+                            <div class="progress-section" id="progress-section" style="display: none;">
+                                <p><span id="tasks-completed">0</span> of <span id="tasks-total">0</span> tasks complete</p>
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-warning" id="progress-bar" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tasks Section -->
+    <section id="tasks" class="section-page bg-light-gray" style="display: none;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Action Items</h2>
+                    <h3 class="section-subheading text-muted">Complete these tasks to improve your security</h3>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <div id="task-list">
+                        <!-- Tasks rendered here -->
+                    </div>
+                    <div id="empty-tasks" class="text-center" style="padding: 40px;">
+                        <i class="fa fa-check-circle fa-3x text-muted"></i>
+                        <h4>No Tasks Yet</h4>
+                        <p class="text-muted">Complete the <a href="#assess" data-section="assess">assessment</a> to get personalized recommendations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Security Dashboard | <a href="../../">Home</a></span>
+                </div>
+                <div class="col-md-4 text-center">
+                    <small>Data stored locally in your browser</small>
+                </div>
+                <div class="col-md-4 text-right">
+                    <button class="btn btn-xs btn-default" id="reset-btn">Reset Data</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Tooltip Template (hidden) -->
+    <div id="tooltip-template" class="tooltip-box" style="display: none;">
+        <div class="tooltip-content">
+            <button class="tooltip-close">&times;</button>
+            <p class="tooltip-text"></p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../lib/jquery.min.js"></script>
+    <script src="../../lib/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.5/dist/purify.min.js"></script>
+    <script type="module" src="js/app.js"></script>
+</body>
+</html>

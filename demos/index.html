@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="../favicon.svg">
+    <title>Live Demos | jvkuechen</title>
+    <meta name="description" content="Interactive project demonstrations.">
+    <!-- Bootstrap Core CSS -->
+    <link href="../lib/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../css/agency.css" rel="stylesheet">
+    <link href="../css/theme-vars.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="../fonts/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css">
+    <style>
+        .demo-card {
+            border: 1px solid var(--color-border, #ddd);
+            border-radius: var(--border-radius, 4px);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .demo-status {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .demo-status.online {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+        }
+        .demo-status.offline {
+            background-color: #fff3e0;
+            color: #e65100;
+        }
+        .demo-status.checking {
+            background-color: #f5f5f5;
+            color: #666;
+        }
+        .demos-section {
+            padding: 150px 0 80px;
+        }
+    </style>
+</head>
+
+<body id="page-top" class="index">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top navbar-shrink">
+        <div class="container" style="font-size:14px;">
+            <div class="navbar-header page-scroll">
+                <a class="navbar-brand page-scroll" href="/">jvkuechen</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="item nav-item"><a class="nav-link" href="/#projects">Projects</a></li>
+                    <li class="item nav-item"><a class="nav-link" href="/#articles">Articles</a></li>
+                    <li class="item nav-item"><a class="nav-link" href="/#demos">Demos</a></li>
+                    <li class="item nav-item"><a class="nav-link" href="../wiki/">Wiki</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="demos-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Live Demos</h2>
+                    <h3 class="section-subheading text-muted">Interactive demonstrations hosted on my homelab. Some demos require the homelab to be online.</h3>
+                </div>
+            </div>
+            <div class="row" id="demo-list">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <p class="text-muted">Demos will be added as projects are deployed to the homelab.</p>
+                    <p class="text-muted">When the homelab is offline for maintenance, demo links will show a status indicator.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer" style="font-size:14px;">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright 2026 Jeff Kuechenmeister</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li><a href="https://github.com/jvkuechen"><i class="fa fa-github"></i></a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="../wiki/">Documentation</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="../lib/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../lib/bootstrap.min.js"></script>
+
+    <script>
+    // Demo reachability checker
+    // Add demos here as they're deployed:
+    // var DEMOS = [
+    //   { name: 'Game Server', url: 'https://games.setcookie.dev', description: '...' },
+    // ];
+    </script>
+</body>
+
+</html>

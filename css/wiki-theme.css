@@ -1,0 +1,345 @@
+/**
+ * Wiki Theme
+ * Docsify overrides to match site styling
+ * Include after docsify theme and theme-vars.css
+ */
+
+/* Import shared variables */
+@import url('./theme-vars.css');
+
+/* Root color overrides for Docsify */
+:root {
+    --theme-color: var(--color-primary, #FFA600);
+    --docsify-sidebar-color: var(--color-dark, #222);
+}
+
+/* Body styling */
+body {
+    font-family: var(--font-body, 'Roboto Slab', sans-serif);
+    color: var(--color-text, #333);
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: var(--color-dark, #222);
+    color: var(--color-white, #fff);
+}
+
+.sidebar ul li a {
+    color: #ccc;
+    font-size: 14px;
+}
+
+.sidebar ul li a:hover {
+    color: var(--color-primary, #FFA600);
+}
+
+.sidebar ul li.active > a {
+    color: var(--color-primary, #FFA600);
+    border-right: 3px solid var(--color-primary, #FFA600);
+}
+
+.sidebar > h1 {
+    color: var(--color-primary, #FFA600);
+    font-family: var(--font-brand, 'Aldrich', sans-serif);
+}
+
+.sidebar > h1 a {
+    color: var(--color-primary, #FFA600);
+}
+
+/* Sidebar layout adjustments */
+.sidebar {
+    padding-top: 0;
+    transition: transform 0.25s ease;
+}
+
+/* Search row - flexbox container for search + toggle, sticky */
+.search-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+    position: sticky;
+    top: 0;
+    background-color: var(--color-dark, #222);
+    z-index: 10;
+}
+
+/* Search box - flex grow to fill space */
+.sidebar .search {
+    flex: 1;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+.sidebar .search input {
+    width: 100%;
+    margin: 0;
+}
+
+/* Sidebar toggle button - inside sidebar, fixed size */
+.sidebar-toggle {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    bottom: auto !important;
+    right: auto !important;
+    width: 36px !important;
+    min-width: 36px !important;
+    max-width: 36px !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    max-height: 36px !important;
+    background-color: var(--color-dark-secondary, #333);
+    border-radius: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 !important;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.sidebar-toggle span {
+    background-color: var(--color-primary, #FFA600);
+    width: 18px !important;
+    height: 2px !important;
+}
+
+.sidebar-toggle:hover {
+    background-color: #444;
+}
+
+/* When sidebar is closed */
+body.close .sidebar {
+    transform: translateX(-234px);
+    overflow: hidden;
+}
+
+body.close .search-row {
+    justify-content: flex-end;
+    padding: 15px;
+}
+
+body.close .sidebar .search {
+    display: none;
+}
+
+body.close .sidebar > h1,
+body.close .sidebar-nav {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .search-row {
+        padding: 0 10px;
+    }
+}
+
+/* App navbar (top bar) */
+.app-nav {
+    background-color: var(--color-dark, #222);
+    padding: 10px 20px;
+}
+
+.app-nav a {
+    color: var(--color-white, #fff);
+}
+
+.app-nav a:hover {
+    color: var(--color-primary, #FFA600);
+}
+
+/* Search */
+.search {
+    border-bottom: 1px solid #444;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+}
+
+.search input {
+    background-color: #333;
+    border: 1px solid #444;
+    color: var(--color-white, #fff);
+    border-radius: 0;
+    padding: 8px 12px;
+}
+
+.search input::placeholder {
+    color: #888;
+}
+
+.search input:focus {
+    border-color: var(--color-primary, #FFA600);
+    box-shadow: 0 0 0 2px rgba(255, 166, 0, 0.2);
+}
+
+.search .matching-post {
+    background-color: #333;
+    border-bottom: 1px solid #444;
+}
+
+.search .matching-post:hover {
+    background-color: #444;
+}
+
+.search .matching-post .search-keyword {
+    color: var(--color-primary, #FFA600);
+    font-weight: 600;
+}
+
+/* Main content */
+.markdown-section {
+    max-width: 900px;
+}
+
+.markdown-section h1,
+.markdown-section h2,
+.markdown-section h3,
+.markdown-section h4 {
+    font-family: var(--font-heading, 'Montserrat', sans-serif);
+    color: var(--color-text, #333);
+}
+
+.markdown-section h1 {
+    border-bottom: 2px solid var(--color-primary, #FFA600);
+    padding-bottom: 10px;
+}
+
+.markdown-section h2 {
+    border-bottom: 1px solid var(--color-border-light, #eee);
+    padding-bottom: 8px;
+}
+
+.markdown-section a {
+    color: var(--color-primary, #FFA600);
+}
+
+.markdown-section a:hover {
+    color: var(--color-primary-hover, #fec503);
+    text-decoration: underline;
+}
+
+/* Code blocks */
+.markdown-section code {
+    background-color: #f5f5f5;
+    border-radius: var(--border-radius, 4px);
+    padding: 2px 6px;
+    font-size: 0.9em;
+}
+
+.markdown-section pre {
+    background-color: var(--color-dark, #222);
+    border-radius: var(--border-radius, 4px);
+    padding: 15px;
+}
+
+.markdown-section pre code {
+    background-color: transparent;
+    color: #f8f8f2;
+    padding: 0;
+}
+
+/* Tables */
+.markdown-section table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.markdown-section table th {
+    background-color: var(--color-dark, #222);
+    color: var(--color-white, #fff);
+    padding: 12px 15px;
+    text-align: left;
+    font-family: var(--font-heading, 'Montserrat', sans-serif);
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.markdown-section table td {
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--color-border-light, #eee);
+}
+
+.markdown-section table tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Blockquotes */
+.markdown-section blockquote {
+    border-left: 4px solid var(--color-primary, #FFA600);
+    background-color: #fff8e6;
+    padding: 15px 20px;
+    margin: 20px 0;
+}
+
+/* Cover page */
+.cover {
+    background-color: var(--color-dark, #222) !important;
+}
+
+.cover h1 {
+    color: var(--color-primary, #FFA600);
+}
+
+.cover a {
+    color: var(--color-primary, #FFA600);
+    border: 2px solid var(--color-primary, #FFA600);
+    border-radius: var(--border-radius, 4px);
+}
+
+.cover a:hover {
+    background-color: var(--color-primary, #FFA600);
+    color: var(--color-white, #fff);
+}
+
+/* GitHub corner */
+.github-corner svg {
+    fill: var(--color-primary, #FFA600);
+}
+
+/* Pagination */
+.docsify-pagination-container {
+    border-top: 1px solid var(--color-border-light, #eee);
+    margin-top: 40px;
+    padding-top: 20px;
+}
+
+.pagination-item-label {
+    color: var(--color-text-muted, #666);
+    font-size: 13px;
+}
+
+.pagination-item-title {
+    color: var(--color-primary, #FFA600);
+}
+
+/* Alert/tip boxes */
+.markdown-section .tip,
+.markdown-section .warn,
+.markdown-section .attention {
+    border-radius: var(--border-radius, 4px);
+    padding: 15px 20px;
+    margin: 20px 0;
+}
+
+.markdown-section .tip {
+    background-color: #e8f5e9;
+    border-left: 4px solid var(--color-success, #5cb85c);
+}
+
+.markdown-section .warn {
+    background-color: #fff8e6;
+    border-left: 4px solid var(--color-warning, #FFA600);
+}
+
+.markdown-section .attention {
+    background-color: #ffebee;
+    border-left: 4px solid var(--color-danger, #d9534f);
+}

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Guide</title>
+    <meta name="description" content="Security guidance article">
+    <!-- Bootstrap + Portfolio Theme -->
+    <link href="../../lib/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/agency.css" rel="stylesheet">
+    <link href="../../fonts/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../../favicon.svg">
+    <link rel="stylesheet" href="../../css/theme-vars.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Article page specific styles */
+        .article-header {
+            background: linear-gradient(135deg, #222 0%, #333 100%);
+            padding: 80px 0 30px;
+            text-align: center;
+            color: white;
+        }
+        .article-header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .article-header .breadcrumb-nav {
+            margin-bottom: 15px;
+        }
+        .article-header .breadcrumb-nav a {
+            color: #FFA600;
+            text-decoration: none;
+        }
+        .article-header .breadcrumb-nav span {
+            color: #999;
+        }
+        .article-content-wrapper {
+            display: flex;
+            gap: 30px;
+            padding: 40px 0;
+        }
+        .article-main {
+            flex: 1;
+            min-width: 0;
+        }
+        .article-sidebar {
+            width: 350px;
+            flex-shrink: 0;
+        }
+        .article-body {
+            background: white;
+            padding: 30px;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .article-body h1 { font-size: 28px; margin-top: 0; }
+        .article-body h2 { font-size: 22px; margin-top: 30px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
+        .article-body h3 { font-size: 18px; margin-top: 25px; }
+        .article-body ul, .article-body ol { padding-left: 25px; }
+        .article-body li { margin-bottom: 8px; }
+        .article-body code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; font-size: 13px; }
+        .article-body pre { background: #f5f5f5; padding: 15px; border-radius: 4px; overflow-x: auto; }
+        .article-body a { color: #FFA600; }
+
+        /* Chat widget for article page */
+        .chat-panel {
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 80px;
+        }
+        .chat-panel-header {
+            background: #222;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 4px 4px 0 0;
+        }
+        .chat-panel-header h4 {
+            margin: 0;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .chat-messages {
+            height: 300px;
+            overflow-y: auto;
+            padding: 15px;
+            background: #f9f9f9;
+        }
+        .chat-message {
+            margin-bottom: 12px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            max-width: 90%;
+        }
+        .chat-message.assistant {
+            background: #e8e8e8;
+            margin-right: auto;
+        }
+        .chat-message.user {
+            background: #FFA600;
+            color: white;
+            margin-left: auto;
+        }
+        .chat-message.system {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            font-size: 13px;
+            text-align: center;
+            max-width: 100%;
+        }
+        .chat-input-area {
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+        .chat-input-area textarea {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            resize: none;
+            font-size: 14px;
+        }
+        .chat-input-area .btn-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .chat-input-area button {
+            flex: 1;
+        }
+
+        /* Completion actions */
+        .completion-actions {
+            background: white;
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 991px) {
+            .article-content-wrapper {
+                flex-direction: column;
+            }
+            .article-sidebar {
+                width: 100%;
+            }
+            .chat-panel {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body id="page-top">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top navbar-solid">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../">Home</a>
+            </div>
+            <div class="collapse navbar-collapse" id="nav-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="index.html">Dashboard</a></li>
+                    <li><a href="../../wiki/#/articles/security/">All Articles</a></li>
+                    <li><a href="../../">Portfolio</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Header -->
+    <header class="article-header">
+        <div class="container">
+            <div class="breadcrumb-nav">
+                <a href="index.html">Security Dashboard</a>
+                <span> / </span>
+                <span id="article-category">Guide</span>
+            </div>
+            <h1 id="article-title">Loading...</h1>
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <section class="bg-light-gray">
+        <div class="container">
+            <div class="article-content-wrapper">
+                <!-- Main Article -->
+                <div class="article-main">
+                    <div class="article-body" id="article-body">
+                        <p class="text-center"><i class="fa fa-spinner fa-spin fa-2x"></i></p>
+                        <p class="text-center text-muted">Loading article...</p>
+                    </div>
+                </div>
+
+                <!-- Sidebar with Chat -->
+                <div class="article-sidebar">
+                    <div class="chat-panel">
+                        <div class="chat-panel-header">
+                            <h4><i class="fa fa-comments"></i> Ask Questions</h4>
+                        </div>
+                        <div class="chat-messages" id="chat-messages">
+                            <div class="chat-message system">
+                                I can help explain this guide. Click "Explain This" or ask a question below.
+                            </div>
+                        </div>
+                        <div class="chat-input-area">
+                            <textarea id="chat-input" rows="2" placeholder="Ask a question about this guide..."></textarea>
+                            <div class="btn-row">
+                                <button class="btn btn-default" id="explain-btn">
+                                    <i class="fa fa-lightbulb-o"></i> Explain This
+                                </button>
+                                <button class="btn btn-primary" id="send-btn">
+                                    <i class="fa fa-paper-plane"></i> Send
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="completion-actions">
+                        <p class="text-muted">Finished this guide?</p>
+                        <button class="btn btn-success btn-block" id="mark-complete-btn">
+                            <i class="fa fa-check"></i> Mark Complete
+                        </button>
+                        <a href="index.html" class="btn btn-default btn-block" style="margin-top: 10px;">
+                            <i class="fa fa-arrow-left"></i> Back to Dashboard
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <span class="copyright">Security Dashboard | <a href="../../">Home</a></span>
+                </div>
+                <div class="col-md-6 text-right">
+                    <small>Data stored locally in your browser</small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../../lib/jquery.min.js"></script>
+    <script src="../../lib/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.5/dist/purify.min.js"></script>
+    <script>
+        (function() {
+            'use strict';
+
+            // Storage key (shared with dashboard)
+            var STORAGE_KEY = 'jvk_security_dashboard';
+
+            // Task definitions (simplified - just need ID mapping)
+            var TASKS = {
+                '2fa-email': { id: 'enable-2fa-email', title: 'Enable 2FA on Your Email', category: 'Two-Factor Authentication' },
+                'password-manager': { id: 'setup-password-manager', title: 'Set Up a Password Manager', category: 'Password Security' },
+                '2fa-banking': { id: 'enable-2fa-banking', title: 'Enable 2FA on Banking', category: 'Two-Factor Authentication' },
+                'enable-updates': { id: 'enable-auto-updates', title: 'Enable Automatic Updates', category: 'System Security' },
+                'check-breaches': { id: 'check-breaches', title: 'Check for Data Breaches', category: 'Password Security' },
+                'browser-security': { id: 'browser-security', title: 'Secure Your Browser', category: 'Browser Security' }
+            };
+
+            // Chat configuration
+            var CONFIG = {
+                apiEndpoint: 'https://groq-proxy.jvkuechen.workers.dev/chat',
+                maxHistoryMessages: 10
+            };
+
+            // State
+            var articleSlug = '';
+            var articleContent = '';
+            var conversationHistory = [];
+            var dashboardState = { completedTasks: [] };
+
+            // Initialize
+            document.addEventListener('DOMContentLoaded', init);
+
+            function init() {
+                loadState();
+                parseUrlAndLoadArticle();
+                setupEventListeners();
+            }
+
+            function loadState() {
+                try {
+                    var saved = localStorage.getItem(STORAGE_KEY);
+                    if (saved) {
+                        dashboardState = JSON.parse(saved);
+                    }
+                } catch (e) {
+                    console.warn('Failed to load state:', e);
+                }
+            }
+
+            function saveState() {
+                try {
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(dashboardState));
+                } catch (e) {
+                    console.warn('Failed to save state:', e);
+                }
+            }
+
+            function parseUrlAndLoadArticle() {
+                var params = new URLSearchParams(window.location.search);
+                articleSlug = params.get('article') || '2fa-email';
+                loadArticle(articleSlug);
+            }
+
+            async function loadArticle(slug) {
+                var task = TASKS[slug];
+                if (task) {
+                    document.getElementById('article-title').textContent = task.title;
+                    document.getElementById('article-category').textContent = task.category;
+                    document.title = task.title + ' | Security Dashboard';
+
+                    // Update complete button state
+                    updateCompleteButton(task.id);
+                }
+
+                try {
+                    var response = await fetch('../../wiki/articles/security/' + slug + '.md');
+                    if (!response.ok) throw new Error('Article not found');
+
+                    var markdown = await response.text();
+                    articleContent = markdown;
+                    var html = DOMPurify.sanitize(marked.parse(markdown));
+                    document.getElementById('article-body').innerHTML = html;
+                } catch (e) {
+                    document.getElementById('article-body').innerHTML =
+                        '<div class="alert alert-warning">' +
+                        '<p>Could not load article. <a href="../../wiki/#/articles/security/' + slug + '" target="_blank">Try viewing in wiki</a></p>' +
+                        '</div>';
+                }
+            }
+
+            function updateCompleteButton(taskId) {
+                var btn = document.getElementById('mark-complete-btn');
+                var isCompleted = dashboardState.completedTasks && dashboardState.completedTasks.includes(taskId);
+
+                if (isCompleted) {
+                    btn.disabled = true;
+                    btn.innerHTML = '<i class="fa fa-check"></i> Completed';
+                    btn.classList.remove('btn-success');
+                    btn.classList.add('btn-default');
+                }
+            }
+
+            function setupEventListeners() {
+                // Mark complete button
+                document.getElementById('mark-complete-btn').addEventListener('click', function() {
+                    var task = TASKS[articleSlug];
+                    if (task && !dashboardState.completedTasks.includes(task.id)) {
+                        dashboardState.completedTasks.push(task.id);
+                        saveState();
+                        updateCompleteButton(task.id);
+                    }
+                });
+
+                // Explain button
+                document.getElementById('explain-btn').addEventListener('click', function() {
+                    sendMessage('Please explain this guide in simple terms. What are the key steps I need to take?');
+                });
+
+                // Send button
+                document.getElementById('send-btn').addEventListener('click', function() {
+                    var input = document.getElementById('chat-input');
+                    var message = input.value.trim();
+                    if (message) {
+                        sendMessage(message);
+                        input.value = '';
+                    }
+                });
+
+                // Enter key in textarea
+                document.getElementById('chat-input').addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        document.getElementById('send-btn').click();
+                    }
+                });
+            }
+
+            function addChatMessage(role, content) {
+                var messagesDiv = document.getElementById('chat-messages');
+                var messageDiv = document.createElement('div');
+                messageDiv.className = 'chat-message ' + role;
+                messageDiv.textContent = content;
+                messagesDiv.appendChild(messageDiv);
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+            }
+
+            async function sendMessage(userMessage) {
+                // Add user message to UI
+                addChatMessage('user', userMessage);
+
+                // Add to history
+                conversationHistory.push({ role: 'user', content: userMessage });
+
+                // Show loading
+                var loadingDiv = document.createElement('div');
+                loadingDiv.className = 'chat-message assistant';
+                loadingDiv.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Thinking...';
+                loadingDiv.id = 'loading-message';
+                document.getElementById('chat-messages').appendChild(loadingDiv);
+
+                try {
+                    var task = TASKS[articleSlug] || { title: 'Security Guide' };
+                    var systemPrompt = 'You are a helpful security assistant. The user is reading a guide titled "' + task.title + '". ' +
+                        'Help them understand the guide and answer their questions. Be concise and practical. ' +
+                        'Here is the guide content for context:\n\n' + articleContent.substring(0, 3000);
+
+                    var response = await fetch(CONFIG.apiEndpoint, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            messages: [
+                                { role: 'system', content: systemPrompt },
+                                ...conversationHistory.slice(-CONFIG.maxHistoryMessages)
+                            ]
+                        })
+                    });
+
+                    // Remove loading
+                    var loading = document.getElementById('loading-message');
+                    if (loading) loading.remove();
+
+                    if (!response.ok) throw new Error('API request failed');
+
+                    var data = await response.json();
+                    var assistantMessage = data.choices[0].message.content;
+
+                    // Add to history and UI
+                    conversationHistory.push({ role: 'assistant', content: assistantMessage });
+                    addChatMessage('assistant', assistantMessage);
+
+                } catch (e) {
+                    // Remove loading
+                    var loading = document.getElementById('loading-message');
+                    if (loading) loading.remove();
+
+                    addChatMessage('assistant', 'Sorry, I could not connect to the assistant. Please try again later.');
+                    console.error('Chat error:', e);
+                }
+            }
+        })();
+    </script>
+</body>
+</html>

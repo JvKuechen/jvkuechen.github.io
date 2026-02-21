@@ -1,0 +1,18 @@
+# Private content - do not commit
+tempprotfolioscratchpad.md
+handoff.md
+
+# Claude Code workspace config
+.claude/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/

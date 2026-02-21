@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <!-- Cookie base -->
+  <circle cx="32" cy="32" r="28" fill="#D4A05A"/>
+  <circle cx="32" cy="32" r="28" fill="none" stroke="#C08B3A" stroke-width="2"/>
+  <!-- Chocolate chips -->
+  <circle cx="22" cy="20" r="4" fill="#5C3317"/>
+  <circle cx="40" cy="18" r="3.5" fill="#5C3317"/>
+  <circle cx="16" cy="36" r="3" fill="#5C3317"/>
+  <circle cx="42" cy="34" r="4" fill="#5C3317"/>
+  <circle cx="28" cy="44" r="3.5" fill="#5C3317"/>
+  <circle cx="32" cy="28" r="3" fill="#5C3317"/>
+  <!-- Cookie texture dots (lighter) -->
+  <circle cx="24" cy="30" r="1.5" fill="#C8954A"/>
+  <circle cx="36" cy="40" r="1.5" fill="#C8954A"/>
+  <circle cx="44" cy="24" r="1.5" fill="#C8954A"/>
+</svg>

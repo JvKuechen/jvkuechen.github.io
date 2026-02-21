@@ -1,0 +1,538 @@
+/**
+ * Security Dashboard - Custom Styles
+ * Extends portfolio theme for security tool
+ * Uses CSS variables from theme-vars.css
+ */
+
+/* Header - minimal for subpages */
+.security-header {
+    background: linear-gradient(135deg, var(--color-dark, #222) 0%, var(--color-dark-secondary, #333) 100%);
+    padding: 70px 0 20px;
+    text-align: center;
+    color: white;
+}
+
+.security-header .container {
+    padding: 0;
+}
+
+.security-header .intro-text {
+    padding: 0;
+    margin: 0;
+}
+
+.security-header .intro-lead-in {
+    font-size: 18px;
+    font-style: italic;
+    color: var(--color-primary, #FFA600);
+    margin-bottom: 5px;
+}
+
+.security-header .intro-heading {
+    font-size: 36px;
+    font-weight: 700;
+    font-family: var(--font-heading, 'Montserrat', sans-serif);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.security-header .intro-subtext {
+    font-size: 16px;
+    color: var(--color-text-light, #999);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Section styling */
+.section-page {
+    padding: 80px 0;
+    min-height: calc(100vh - 200px);
+}
+
+.section-page.bg-light-gray {
+    background-color: var(--color-light, #f7f7f7);
+}
+
+/* Score Circle */
+.score-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    border: 8px solid var(--color-border, #ccc);
+    transition: border-color 0.3s;
+}
+
+.score-circle.unknown {
+    border-color: var(--color-border, #ccc);
+}
+
+.score-circle.danger {
+    border-color: var(--color-danger, #d9534f);
+}
+
+.score-circle.warning {
+    border-color: var(--color-warning, #FFA600);
+}
+
+.score-circle.success {
+    border-color: var(--color-success, #5cb85c);
+}
+
+.score-value {
+    font-size: 48px;
+    font-weight: 700;
+    font-family: var(--font-heading, 'Montserrat', sans-serif);
+    color: var(--color-text, #333);
+}
+
+.score-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--color-text-light, #999);
+    letter-spacing: 1px;
+}
+
+/* Top Priority Alert */
+.top-priority-alert {
+    background: #fff8e6;
+    border-left: 4px solid var(--color-primary, #FFA600);
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.top-priority-alert h4 {
+    color: var(--color-primary, #FFA600);
+    margin-top: 0;
+}
+
+/* Progress Section */
+.progress-section {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-border-light, #eee);
+}
+
+.progress {
+    height: 10px;
+    border-radius: 5px;
+    background-color: var(--color-border-light, #eee);
+    margin-top: 10px;
+}
+
+.progress-bar-warning {
+    background-color: var(--color-primary, #FFA600);
+}
+
+/* Panel styling */
+.panel {
+    border-radius: var(--border-radius, 4px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.panel-heading {
+    background: #f5f5f5;
+    border-bottom: 1px solid var(--color-border, #ddd);
+    padding: 15px 20px;
+}
+
+.panel-heading h4 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.panel-body {
+    padding: 20px;
+}
+
+/* Form styling */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form-control {
+    border-radius: var(--border-radius, 4px);
+    border: 1px solid var(--color-border, #ddd);
+    padding: 10px 15px;
+    font-size: 14px;
+    line-height: 1.5;
+    height: auto;
+    min-height: 42px;
+}
+
+select.form-control {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.form-control:focus {
+    border-color: var(--color-primary, #FFA600);
+    box-shadow: 0 0 0 2px rgba(255, 166, 0, 0.2);
+}
+
+/* Task Items */
+.task-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+    background: var(--color-white, white);
+    border-radius: var(--border-radius, 4px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    margin-bottom: 15px;
+    transition: box-shadow 0.2s;
+}
+
+.task-item:hover {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+}
+
+.task-item.task-completed {
+    opacity: 0.7;
+    background: #f9f9f9;
+}
+
+.task-item.task-completed .task-title {
+    text-decoration: line-through;
+    color: var(--color-text-light, #999);
+}
+
+.task-status {
+    font-size: 24px;
+    margin-right: 15px;
+    color: var(--color-border, #ccc);
+}
+
+.task-content {
+    flex: 1;
+}
+
+.task-content .badge {
+    font-size: 10px;
+    padding: 4px 8px;
+    border-radius: 3px;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+.task-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 5px 0;
+    color: var(--color-text, #333);
+}
+
+.task-description {
+    color: var(--color-text-muted, #666);
+    margin: 5px 0 10px;
+    font-size: 14px;
+}
+
+.task-actions {
+    margin-left: 15px;
+}
+
+/* Navigation - solid background on scroll */
+.navbar-default.navbar-solid {
+    background-color: var(--color-dark, #222) !important;
+    padding: 10px 0;
+    transition: background-color 0.3s, padding 0.3s;
+}
+
+/* Navigation active state */
+.navbar-default .navbar-nav > li > a.active {
+    color: var(--color-primary, #FFA600);
+    background: transparent;
+}
+
+/* Button primary */
+.btn-primary {
+    background-color: var(--color-primary, #FFA600);
+    border-color: var(--color-primary, #FFA600);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--color-primary-dark, #e69500);
+    border-color: var(--color-primary-dark, #e69500);
+}
+
+/* Footer */
+footer {
+    background: var(--color-dark, #222);
+    padding: 25px 0;
+    color: var(--color-text-light, #999);
+}
+
+footer a {
+    color: var(--color-primary, #FFA600);
+}
+
+/* Assessment Mode Toggle */
+.assessment-mode-toggle {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    justify-content: center;
+}
+
+.mode-btn {
+    padding: 15px 25px;
+    border: 2px solid var(--color-border, #ddd);
+    background: var(--color-white, white);
+    border-radius: var(--border-radius, 4px);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    min-width: 150px;
+}
+
+.mode-btn:hover {
+    border-color: var(--color-primary, #FFA600);
+}
+
+.mode-btn.active {
+    border-color: var(--color-primary, #FFA600);
+    background: var(--color-primary, #FFA600);
+    color: white;
+}
+
+.mode-btn i {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.mode-desc {
+    display: block;
+    font-size: 11px;
+    opacity: 0.8;
+}
+
+/* Question Groups */
+.question-group {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--color-border-light, #eee);
+}
+
+.question-group:last-child {
+    border-bottom: none;
+}
+
+.question-group label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+    font-size: 15px;
+}
+
+.question-number {
+    color: var(--color-primary, #FFA600);
+    font-weight: 700;
+    margin-right: 5px;
+}
+
+.help-text {
+    color: var(--color-text-muted, #666);
+    font-size: 13px;
+    margin: 5px 0 12px;
+    line-height: 1.4;
+}
+
+/* Follow-up Questions */
+.question-group.follow-up {
+    margin-left: 20px;
+    padding-left: 20px;
+    border-left: 3px solid var(--color-primary, #FFA600);
+    border-bottom: none;
+    background: #fafafa;
+    padding: 15px 20px;
+    border-radius: 0 var(--border-radius, 4px) var(--border-radius, 4px) 0;
+}
+
+.question-group.follow-up label i {
+    color: var(--color-primary, #FFA600);
+    margin-right: 8px;
+}
+
+/* Tier Headers */
+.tier-header {
+    background: var(--color-light, #f5f5f5);
+    padding: 12px 15px;
+    margin: 20px -20px;
+    border-left: 4px solid var(--color-primary, #FFA600);
+}
+
+.tier-header:first-child {
+    margin-top: 0;
+}
+
+.tier-header h5 {
+    margin: 0 0 3px;
+    font-weight: 700;
+    color: var(--color-text, #333);
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+}
+
+.tier-header small {
+    font-size: 12px;
+}
+
+/* Tooltip Boxes */
+.tooltip-box {
+    margin-top: 10px;
+    background: #e6f3ff;
+    border: 1px solid #b3d7ff;
+    border-radius: var(--border-radius, 4px);
+    padding: 12px 15px;
+    position: relative;
+}
+
+.tooltip-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.tooltip-close {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #666;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.tooltip-close:hover {
+    color: #333;
+}
+
+.tooltip-text {
+    margin: 0;
+    font-size: 13px;
+    color: #1a5276;
+    line-height: 1.5;
+    flex: 1;
+}
+
+/* Score Level */
+.score-level {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Additional Score Circle Colors */
+.score-circle.caution {
+    border-color: #ea580c;
+}
+
+.score-circle.excellent {
+    border-color: #16a34a;
+}
+
+/* Score Detail Section */
+.score-detail {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid var(--color-border-light, #eee);
+    text-align: left;
+}
+
+.score-detail .table {
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.score-detail .table th {
+    font-weight: 600;
+    border-bottom: 2px solid var(--color-border, #ddd);
+}
+
+.score-detail .table td,
+.score-detail .table th {
+    padding: 8px 10px;
+}
+
+/* Continue Assessment */
+.continue-assessment {
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+.continue-assessment .btn {
+    margin-top: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .security-header {
+        padding: 120px 0 60px;
+    }
+
+    .security-header .intro-heading {
+        font-size: 32px;
+    }
+
+    .score-circle {
+        width: 120px;
+        height: 120px;
+    }
+
+    .score-value {
+        font-size: 36px;
+    }
+
+    .task-item {
+        flex-direction: column;
+    }
+
+    .task-status {
+        margin-bottom: 10px;
+    }
+
+    .task-actions {
+        margin-left: 0;
+        margin-top: 15px;
+    }
+
+    .assessment-mode-toggle {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .mode-btn {
+        width: 100%;
+        max-width: 200px;
+    }
+
+    .tier-header {
+        margin-left: -15px;
+        margin-right: -15px;
+    }
+
+    .question-group.follow-up {
+        margin-left: 10px;
+    }
+}

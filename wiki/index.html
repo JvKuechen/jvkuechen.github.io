@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Docs | jvkuechen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="../favicon.svg">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="../fonts/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Docsify base theme -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <!-- Custom theme overrides -->
+  <link rel="stylesheet" href="../css/theme-vars.css">
+  <link rel="stylesheet" href="../css/wiki-theme.css">
+  <link rel="stylesheet" href="../css/chat-widget.css">
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      name: 'jvkuechen',
+      repo: 'https://github.com/jvkuechen',
+      loadSidebar: true,
+      subMaxLevel: 2,
+      auto2top: true,
+      search: {
+        placeholder: 'Search docs...',
+        noData: 'No results',
+        depth: 3
+      },
+      // Alias routes to fetch from external wiki repos
+      // Format: /category/page -> raw GitHub wiki URL
+      // Uncomment and configure as wiki repos are created:
+      //
+      // alias: {
+      //   '/projects/DungeonLLM':
+      //     'https://raw.githubusercontent.com/jvkuechen/DungeonLLM/wiki/Home.md',
+      //   '/projects/(.*)':
+      //     'https://raw.githubusercontent.com/jvkuechen/$1/wiki/Home.md',
+      // }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script>
+    // Move sidebar toggle inside sidebar for proper alignment
+    document.addEventListener('DOMContentLoaded', function() {
+      var checkSidebar = setInterval(function() {
+        var sidebar = document.querySelector('.sidebar');
+        var toggle = document.querySelector('.sidebar-toggle');
+        var search = document.querySelector('.sidebar .search');
+
+        if (sidebar && toggle && search) {
+          clearInterval(checkSidebar);
+          // Create wrapper for search + toggle
+          var searchRow = document.createElement('div');
+          searchRow.className = 'search-row';
+          // Insert before search
+          search.parentNode.insertBefore(searchRow, search);
+          // Move search and toggle into wrapper
+          searchRow.appendChild(search);
+          searchRow.appendChild(toggle);
+        }
+      }, 100);
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/search.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-nix.min.js"></script>
+
+  <!-- Chat Widget -->
+  <div id="chat-widget">
+    <div id="chat-header" onclick="toggleChat()">
+      <i class="fa fa-comments" id="chat-icon"></i>
+    </div>
+    <div id="chat-window">
+      <div id="chat-window-header">
+        <span id="chat-window-title">AI Guide</span>
+        <button id="chat-close-button" onclick="toggleChat()">x</button>
+      </div>
+      <div id="cookie-consent-message">
+        <p>
+          We use cookies to save your conversation history. Do you accept?
+        </p>
+        <button id="accept-cookies" onclick="acceptCookies()">Accept</button>
+        <button id="reject-cookies" onclick="rejectCookies()">Reject</button>
+      </div>
+      <div id="chat-content" style="display: none;">
+        <div id="cookie-warning">
+          Conversation history disabled; chat will reset on page reload.
+        </div>
+        <div id="chat-messages"></div>
+        <div id="quick-actions"></div>
+        <div id="chat-input-container">
+          <input type="text" id="chat-input" placeholder="Ask me anything..." autocomplete="off" />
+          <button id="chat-send-button" onclick="sendMessage()">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="../js/quick-actions.js"></script>
+  <script src="../js/chat.js"></script>
+</body>
+</html>

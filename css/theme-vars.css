@@ -1,0 +1,38 @@
+/**
+ * Site Theme Variables
+ * Central color and styling definitions used across all pages
+ */
+
+:root {
+    /* Primary colors */
+    --color-primary: #FFA600;
+    --color-primary-hover: #fec503;
+    --color-primary-dark: #e69500;
+
+    /* Neutral colors */
+    --color-dark: #222;
+    --color-dark-secondary: #333;
+    --color-light: #f7f7f7;
+    --color-white: #fff;
+    --color-text: #333;
+    --color-text-muted: #666;
+    --color-text-light: #999;
+
+    /* Border colors */
+    --color-border: #ddd;
+    --color-border-light: #eee;
+
+    /* Status colors */
+    --color-success: #5cb85c;
+    --color-warning: #FFA600;
+    --color-danger: #d9534f;
+
+    /* Spacing */
+    --border-radius: 4px;
+    --border-radius-lg: 13px;
+
+    /* Typography */
+    --font-heading: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-body: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-brand: 'Aldrich', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
