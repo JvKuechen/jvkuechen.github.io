@@ -14,31 +14,19 @@
     var QUICK_ACTIONS = {
         'show-projects': {
             label: 'Show projects',
-            response: 'Here are some featured projects:\n\n' +
-                '- **DungeonLLM** - LLM-enhanced RPG in Godot [View](/wiki/#/projects/DungeonLLM)\n' +
-                '- **Smart Swarm LLM** - Multi-agent coordination [View](/wiki/#/projects/Smart-Swarm-LLM)\n' +
-                '- **RenderStream** - GPU to WebRTC streaming [View](/wiki/#/projects/W)\n' +
-                '- **AutoHomeLab** - NixOS declarative homelab [View](/wiki/#/projects/AutoHomeLab)\n\n' +
-                'See all projects in the [Wiki](/wiki/).',
-            condition: function() { return true; }
-        },
-        'show-articles': {
-            label: 'Show articles',
-            response: 'Technical articles available:\n\n' +
-                '- [LLM Integration Patterns](/wiki/#/articles/llm-integration-patterns)\n' +
-                '- [Declarative Homelab with NixOS](/wiki/#/articles/declarative-homelab)\n' +
-                '- [GPU Streaming Pipeline](/wiki/#/articles/gpu-streaming-pipeline)\n' +
-                '- [Vulkan to WebRTC Graphics](/wiki/#/articles/vulkan-webrtc-graphics)\n' +
-                '- [Code Visualization Tools](/wiki/#/articles/code-visualization-tools)',
+            response: 'Public projects are loaded from GitHub and shown in the Projects section on the homepage. ' +
+                'Each project links to its GitHub repo. Projects with wiki pages also link to documentation.\n\n' +
+                'Browse all projects on [GitHub](https://github.com/jvkuechen) or in the [Wiki](/wiki/).',
             condition: function() { return true; }
         },
         'security-status': {
-            label: 'My security status',
+            label: 'Security status',
             response: function() {
                 var state = getSecurityState();
                 if (!state || !state.questionnaire || Object.keys(state.questionnaire).length === 0) {
                     return 'You haven\'t completed a security assessment yet. ' +
-                        'Visit the [Security Dashboard](/tools/security-dashboard/) to check your security posture.';
+                        'The [Security Dashboard](/tools/security-dashboard/) is an educational tool ' +
+                        'that helps you evaluate your personal security practices.';
                 }
 
                 var q = state.questionnaire;
@@ -75,9 +63,9 @@
                 }
                 if (issues.length > 0) {
                     response += 'Needs attention: ' + issues.join(', ') + '\n\n';
-                    response += 'Visit the [Security Dashboard](/tools/security-dashboard/) to see recommended actions.';
+                    response += 'Visit the [Security Dashboard](/tools/security-dashboard/) for recommended actions.';
                 } else if (good.length > 0) {
-                    response += 'Great job! Your basic security is in good shape.';
+                    response += 'Your basic security practices look solid.';
                 }
                 return response;
             },
@@ -91,41 +79,34 @@
 
                 if (path.includes('/tools/security-dashboard')) {
                     if (path.includes('article.html')) {
-                        return 'This is a security guide article. Read through the steps, and click "Mark Complete" when you\'re done.';
+                        return 'This is a security guide article. Read through the steps, and click "Mark Complete" when done.';
                     }
-                    return 'This is the Security Dashboard. Answer the questions on the left to get your security score.';
+                    return 'This is the Security Dashboard -- an educational tool for evaluating personal security practices. ' +
+                        'Answer the questions on the left to get your security score and recommended actions.';
                 }
 
                 if (path.includes('/wiki/')) {
                     if (hash.includes('/projects/')) {
-                        return 'This is a project documentation page. Use the sidebar to browse other projects or articles.';
+                        return 'This is a project documentation page. Use the sidebar to browse other projects.';
                     }
-                    if (hash.includes('/articles/')) {
-                        return 'This is a technical article. Check the sidebar for more articles and project documentation.';
-                    }
-                    return 'This is the documentation wiki. Use the sidebar to browse projects, articles, and guides.';
+                    return 'This is the documentation wiki. Use the sidebar to browse project documentation.';
                 }
 
-                return 'This is the portfolio homepage. Scroll down to see featured projects, articles, and demos. ' +
-                    'Click "Wiki" in the nav for full documentation.';
+                if (path.includes('/demos')) {
+                    return 'This is the demos page. Interactive demonstrations are hosted on the homelab. ' +
+                        'When the homelab is offline, demos show a status indicator.';
+                }
+
+                return 'This is the portfolio homepage. The About section covers professional background. ' +
+                    'Projects are loaded from GitHub. The Wiki has detailed documentation.';
             },
             condition: function() { return true; }
         },
-        'show-ai-projects': {
-            label: 'AI/LLM projects',
-            response: 'AI and LLM projects:\n\n' +
-                '- [Smart Swarm LLM](/wiki/#/projects/Smart-Swarm-LLM) - Multi-agent coordination\n' +
-                '- [DungeonLLM](/wiki/#/projects/DungeonLLM) - LLM-enhanced RPG\n' +
-                '- [Graph RAG App](/wiki/#/projects/graph-rag-app) - Knowledge graph RAG\n' +
-                '- [ChatCompare](/wiki/#/projects/ChatCompare) - LLM comparison tool',
-            condition: function() { return true; }
-        },
-        'show-graphics-projects': {
-            label: 'Graphics projects',
-            response: 'Graphics and streaming projects:\n\n' +
-                '- [RenderStream (W)](/wiki/#/projects/W) - GPU to WebRTC streaming\n' +
-                '- [Vulkan Streaming](/wiki/#/projects/vulkan-streaming) - NVENC encoding pipeline\n' +
-                '- [Vulkan WebRTC Triangle](/wiki/#/projects/vulkan-webrtc-triangle) - Cross-platform graphics',
+        'view-github': {
+            label: 'View on GitHub',
+            response: 'The source code for this site and all public projects are on ' +
+                '[GitHub](https://github.com/jvkuechen). ' +
+                'Project descriptions there are the source of truth for what appears in the Projects section.',
             condition: function() { return true; }
         }
     };
@@ -137,11 +118,6 @@
         } catch (e) {
             return null;
         }
-    }
-
-    function hasSecurityState() {
-        var state = getSecurityState();
-        return state && state.questionnaire && Object.keys(state.questionnaire).length > 0;
     }
 
     function isOnSecurityPage() {
@@ -157,9 +133,9 @@
         var priorityOrder;
 
         if (isOnSecurityPage()) {
-            priorityOrder = ['security-status', 'explain-page', 'show-projects', 'show-articles'];
+            priorityOrder = ['security-status', 'explain-page', 'show-projects', 'view-github'];
         } else {
-            priorityOrder = ['show-projects', 'show-articles', 'explain-page', 'show-ai-projects'];
+            priorityOrder = ['show-projects', 'explain-page', 'security-status', 'view-github'];
         }
 
         for (var i = 0; i < priorityOrder.length && actions.length < maxActions; i++) {
