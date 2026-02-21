@@ -15,8 +15,8 @@
     <meta property="og:title" content="Jeff Kuechenmeister | IT Specialist">
     <meta property="og:description" content="IT specialist building enterprise infrastructure, security systems, and automation for regulated environments.">
     <meta property="og:url" content="https://jvkuechen.com/">
-    <!-- Bootstrap Core CSS -->
-    <link href="lib/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/agency.css" rel="stylesheet">
     <!-- Centralized Theme -->
@@ -33,23 +33,18 @@
 
 <body id="page-top" class="index">
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container" style="font-size:14px;">
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand page-scroll" href="/" id="nav-brand">jvkuechen</a>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="item nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="item nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="item nav-item"><a class="nav-link" href="#demos">Demos</a></li>
-                    <li class="item nav-item"><a class="nav-link" href="wiki/">Wiki</a></li>
+            <a class="navbar-brand page-scroll" href="/" id="nav-brand">jvkuechen</a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#main-nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="main-nav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#demos">Demos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="wiki/">Wiki</a></li>
                 </ul>
             </div>
         </div>
@@ -74,7 +69,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
+                <div class="col-lg-8 offset-lg-2">
                     <p class="text-muted" style="font-size: 16px; line-height: 1.8; margin-bottom: 40px;">
                         I design and operate internal IT platforms in regulated laboratory environments.
                         My work centers on replacing manual processes with controlled, auditable automation --
@@ -110,7 +105,7 @@
                 </div>
             </div>
             <div class="row" id="project-cards">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
+                <div class="col-lg-8 offset-lg-2 text-center">
                     <p class="text-muted">Loading projects...</p>
                 </div>
             </div>
@@ -127,7 +122,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
+                <div class="col-lg-8 offset-lg-2 text-center">
                     <p class="text-muted" id="demos-status">Checking demo server status...</p>
                 </div>
             </div>
@@ -142,29 +137,23 @@
                 </div>
                 <div class="col-md-4">
                     <ul class="list-inline social-buttons">
-                        <li><a href="https://github.com/jvkuechen"><i class="fa fa-github"></i></a></li>
-                        <li><a href="https://linkedin.com/in/jvkuechen"><i class="fa fa-linkedin"></i></a></li>
+                        <li class="list-inline-item"><a href="https://github.com/jvkuechen"><i class="fa fa-github"></i></a></li>
+                        <li class="list-inline-item"><a href="https://linkedin.com/in/jvkuechen"><i class="fa fa-linkedin"></i></a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
                     <ul class="list-inline quicklinks">
-                        <li><a href="wiki/">Documentation</a></li>
+                        <li class="list-inline-item"><a href="wiki/">Documentation</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- jQuery -->
-    <script src="lib/jquery.min.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="lib/bootstrap.min.js"></script>
-    <!-- Plugin JavaScript -->
-    <script src="lib/jquery.easing.min.js"></script>
-    <script src="lib/classie.js"></script>
-    <script src="lib/cbpAnimatedHeader.js"></script>
-    <!-- Custom Theme JavaScript -->
-    <script src="lib/agency.js"></script>
+    <!-- Bootstrap 5 Bundle (includes Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Theme Behavior -->
+    <script src="js/agency.js"></script>
     <!-- Domain Router -->
     <script src="js/router.js"></script>
     <!-- Dynamic Projects -->

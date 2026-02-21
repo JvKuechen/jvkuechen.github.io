@@ -32,16 +32,11 @@
         noData: 'No results',
         depth: 3
       },
-      // Alias routes to fetch from external wiki repos
-      // Format: /category/page -> raw GitHub wiki URL
-      // Uncomment and configure as wiki repos are created:
-      //
-      // alias: {
-      //   '/projects/DungeonLLM':
-      //     'https://raw.githubusercontent.com/jvkuechen/DungeonLLM/wiki/Home.md',
-      //   '/projects/(.*)':
-      //     'https://raw.githubusercontent.com/jvkuechen/$1/wiki/Home.md',
-      // }
+      // Alias routes: fetch project docs from GitHub wiki repos
+      alias: {
+        '/projects/([^/]+)/(.+)': 'https://raw.githubusercontent.com/wiki/jvkuechen/$1/$2.md',
+        '/projects/([^/]+)': 'https://raw.githubusercontent.com/wiki/jvkuechen/$1/Home.md',
+      }
     }
   </script>
   <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>

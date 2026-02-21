@@ -16,3 +16,8 @@ desktop.ini
 *~
 .vscode/
 .idea/
+
+# Node / Playwright
+node_modules/
+test-results/
+tests/screenshots/

@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "scripts": {
+    "test": "npx playwright test",
+    "screenshots": "npx playwright test --reporter=list"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.0"
+  }
+}

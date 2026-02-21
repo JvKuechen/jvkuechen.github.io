@@ -124,30 +124,30 @@
     margin-top: 10px;
 }
 
-.progress-bar-warning {
+.progress-bar.bg-warning {
     background-color: var(--color-primary, #FFA600);
 }
 
-/* Panel styling */
-.panel {
+/* Card styling (migrated from panel) */
+.card {
     border-radius: var(--border-radius, 4px);
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     margin-bottom: 30px;
 }
 
-.panel-heading {
+.card-header {
     background: #f5f5f5;
     border-bottom: 1px solid var(--color-border, #ddd);
     padding: 15px 20px;
 }
 
-.panel-heading h4 {
+.card-header h4 {
     margin: 0;
     font-size: 16px;
     font-weight: 600;
 }
 
-.panel-body {
+.card-body {
     padding: 20px;
 }
 
@@ -247,14 +247,14 @@ select.form-control {
 }
 
 /* Navigation - solid background on scroll */
-.navbar-default.navbar-solid {
+.navbar.navbar-solid {
     background-color: var(--color-dark, #222) !important;
     padding: 10px 0;
     transition: background-color 0.3s, padding 0.3s;
 }
 
 /* Navigation active state */
-.navbar-default .navbar-nav > li > a.active {
+.navbar .navbar-nav > li > a.active {
     color: var(--color-primary, #FFA600);
     background: transparent;
 }

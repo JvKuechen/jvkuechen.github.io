@@ -1,17 +1,11 @@
 - [Home](/)
 
 - **Projects**
-  - [DungeonLLM](/projects/DungeonLLM)
-  - [RenderStream](/projects/W)
-  - [AutoHomeLab](/projects/AutoHomeLab)
-  - [ScriptGoblin](/projects/ScriptGoblin)
-  - [Smart Swarm LLM](/projects/Smart-Swarm-LLM)
-  - [Vulkan Streaming](/projects/vulkan-streaming)
+  - [CrumbGuard](/projects/CrumbGuard)
+  - _[All projects](/)_
 
 - **Articles**
-  - [LLM Integration Patterns](/articles/llm-integration-patterns)
-  - [Declarative Homelab](/articles/declarative-homelab)
-  - [GPU Streaming Pipeline](/articles/gpu-streaming-pipeline)
+  - [Coming soon](/articles/)
 
 - **Tools**
   - [Security Dashboard](/tools/security-dashboard/)

@@ -2,18 +2,12 @@
 
 Welcome to the documentation wiki. Browse projects and articles using the sidebar.
 
-## Featured Projects
+## Projects
 
-| Project | Description |
-|---------|-------------|
-| [DungeonLLM](/projects/DungeonLLM) | LLM-enhanced RPG in Godot 4.5 |
-| [RenderStream](/projects/W) | GPU to WebRTC streaming |
-| [AutoHomeLab](/projects/AutoHomeLab) | NixOS declarative homelab |
-| [ScriptGoblin](/projects/ScriptGoblin) | VS Code code visualization |
-| [Smart Swarm LLM](/projects/Smart-Swarm-LLM) | Multi-agent LLM coordination |
+Project documentation is pulled automatically from GitHub wiki repos. Visit a project page to see its wiki content.
+
+- [CrumbGuard](/projects/CrumbGuard) - Browser extension for cookie management
 
 ## Articles
 
-- [LLM Integration Patterns](/articles/llm-integration-patterns)
-- [Declarative Homelab with NixOS](/articles/declarative-homelab)
-- [GPU Streaming Pipeline](/articles/gpu-streaming-pipeline)
+- [Browse articles](/articles/)

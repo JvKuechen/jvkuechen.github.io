@@ -73,7 +73,7 @@
     function renderProjects(container, repos) {
         if (repos.length === 0) {
             container.innerHTML =
-                '<div class="col-lg-8 col-lg-offset-2 text-center">' +
+                '<div class="col-lg-8 offset-lg-2 text-center">' +
                 '<p class="text-muted">Projects coming soon. ' +
                 '<a href="https://github.com/' + GITHUB_USER + '">View on GitHub</a></p>' +
                 '</div>';
@@ -84,7 +84,7 @@
         for (var i = 0; i < repos.length; i++) {
             var repo = repos[i];
             var languageBadge = repo.language
-                ? '<span class="label label-default" style="font-weight: normal; margin-left: 6px;">' + escapeHtml(repo.language) + '</span>'
+                ? '<span class="badge bg-secondary" style="font-weight: normal; margin-left: 6px;">' + escapeHtml(repo.language) + '</span>'
                 : '';
 
             var docsLink = repo.has_wiki
@@ -112,7 +112,7 @@
 
     function renderFallback(container) {
         container.innerHTML =
-            '<div class="col-lg-8 col-lg-offset-2 text-center">' +
+            '<div class="col-lg-8 offset-lg-2 text-center">' +
             '<p class="text-muted">Could not load projects. ' +
             '<a href="https://github.com/' + GITHUB_USER + '">View on GitHub</a></p>' +
             '</div>';
