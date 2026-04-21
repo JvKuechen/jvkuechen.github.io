@@ -70,17 +70,12 @@ test.describe('Desktop screenshots', () => {
     await snapElement(page, 'footer', '06-homepage-footer');
   });
 
-  test('07 - Homepage chat widget open', async ({ page }) => {
-    // Grant cookie consent so chat header is visible on load
+  test('07 - Homepage contact section', async ({ page }) => {
+    // Chat widget is currently disabled; this slot now captures the
+    // Contact section added in its place.
     await page.goto('/');
-    await page.evaluate(() => localStorage.setItem('cookieConsent', 'true'));
-    await page.reload();
     await page.waitForLoadState('networkidle');
-    // Click the chat header to expand the widget
-    await page.click('#chat-header');
-    await page.waitForTimeout(500);
-    // Screenshot the expanded chat widget
-    await snapElement(page, '#chat-widget', '07-chat-widget-open');
+    await snapElement(page, '#contact', '07-homepage-contact');
   });
 
   test('08 - 404 page', async ({ page }) => {
@@ -96,12 +91,29 @@ test.describe('Desktop screenshots', () => {
     await snapFullPage(page, '09-demos-page');
   });
 
-  test('10 - Wiki page', async ({ page }) => {
+  test('10 - Wiki home page', async ({ page }) => {
     await page.goto('/wiki/');
     // Docsify renders client-side, wait for main content
     await page.waitForSelector('#main', { timeout: 10000 });
     await page.waitForTimeout(1000);
+    // Assert the chat widget / cookie popup is NOT in the DOM
+    expect(await page.locator('#chat-widget').count()).toBe(0);
+    expect(await page.locator('#cookie-consent-message').count()).toBe(0);
     await snapFullPage(page, '10-wiki-page');
+  });
+
+  test('10b - Wiki project page (CrumbGuard)', async ({ page }) => {
+    await page.goto('/wiki/#/projects/CrumbGuard');
+    await page.waitForSelector('#main', { timeout: 10000 });
+    await page.waitForTimeout(1500); // alias routes fetch from GitHub
+    await snapFullPage(page, '10b-wiki-crumbguard');
+  });
+
+  test('10c - Wiki sidebar', async ({ page }) => {
+    await page.goto('/wiki/');
+    await page.waitForSelector('.sidebar', { timeout: 10000 });
+    await page.waitForTimeout(500);
+    await snapElement(page, '.sidebar', '10c-wiki-sidebar');
   });
 
   test('11 - Security dashboard', async ({ page }) => {

@@ -36,7 +36,11 @@ module.exports = defineConfig({
   ],
 
   webServer: {
-    command: 'python -m http.server 8000',
+    // Windows ships `python`, WSL/Linux ships `python3`. Use whichever
+    // is available so the same config runs on both hosts.
+    command: process.platform === 'win32'
+      ? 'python -m http.server 8000'
+      : 'python3 -m http.server 8000',
     port: 8000,
     reuseExistingServer: true,
     timeout: 10000,

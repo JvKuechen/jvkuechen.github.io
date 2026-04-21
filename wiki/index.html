@@ -68,7 +68,10 @@
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-nix.min.js"></script>
 
-  <!-- Chat Widget -->
+  <!-- Chat widget disabled. To re-enable: uncomment the block below,
+       update the Cloudflare Worker's GROQ_API_KEY, and the widget
+       picks up again. Same flow as index.html at repo root. -->
+  <!--
   <div id="chat-widget">
     <div id="chat-header" onclick="toggleChat()">
       <i class="fa fa-comments" id="chat-icon"></i>
@@ -78,17 +81,7 @@
         <span id="chat-window-title">AI Guide</span>
         <button id="chat-close-button" onclick="toggleChat()">x</button>
       </div>
-      <div id="cookie-consent-message">
-        <p>
-          We use cookies to save your conversation history. Do you accept?
-        </p>
-        <button id="accept-cookies" onclick="acceptCookies()">Accept</button>
-        <button id="reject-cookies" onclick="rejectCookies()">Reject</button>
-      </div>
-      <div id="chat-content" style="display: none;">
-        <div id="cookie-warning">
-          Conversation history disabled; chat will reset on page reload.
-        </div>
+      <div id="chat-content">
         <div id="chat-messages"></div>
         <div id="quick-actions"></div>
         <div id="chat-input-container">
@@ -100,5 +93,7 @@
   </div>
   <script src="../js/quick-actions.js"></script>
   <script src="../js/chat.js"></script>
+  -->
+  <!-- /Chat widget -->
 </body>
 </html>
