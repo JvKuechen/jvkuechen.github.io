@@ -14,8 +14,8 @@
     var DOMAIN_CONFIG = {
         'jvkuechen.com': {
             brand: 'Jeff Kuechenmeister',
-            headline: 'IT Specialist',
-            title: 'Jeff Kuechenmeister | IT Specialist',
+            headline: 'Platform Engineer',
+            title: 'Jeff Kuechenmeister | Platform Engineer',
             description: 'IT specialist building enterprise infrastructure, security systems, and automation for regulated environments.',
             favicon: 'img/profile.jpg',
             faviconType: 'image/jpeg',
@@ -23,8 +23,8 @@
         },
         'www.jvkuechen.com': {
             brand: 'Jeff Kuechenmeister',
-            headline: 'IT Specialist',
-            title: 'Jeff Kuechenmeister | IT Specialist',
+            headline: 'Platform Engineer',
+            title: 'Jeff Kuechenmeister | Platform Engineer',
             description: 'IT specialist building enterprise infrastructure, security systems, and automation for regulated environments.',
             favicon: 'img/profile.jpg',
             faviconType: 'image/jpeg',
@@ -32,8 +32,8 @@
         },
         'jvkuechen.github.io': {
             brand: 'Jeff Kuechenmeister',
-            headline: 'IT Specialist',
-            title: 'Jeff Kuechenmeister | IT Specialist',
+            headline: 'Platform Engineer',
+            title: 'Jeff Kuechenmeister | Platform Engineer',
             description: 'IT specialist building enterprise infrastructure, security systems, and automation for regulated environments.',
             favicon: 'img/profile.jpg',
             faviconType: 'image/jpeg',
@@ -41,7 +41,7 @@
         },
         'setcookie.dev': {
             brand: 'SetCookie.dev',
-            headline: 'IT Specialist',
+            headline: 'Platform Engineer',
             title: 'SetCookie.dev',
             description: 'Infrastructure, security, and automation. Technical writing, projects, and homelab demos.',
             favicon: 'img/cookie-favicon.svg',
@@ -50,7 +50,7 @@
         },
         'www.setcookie.dev': {
             brand: 'SetCookie.dev',
-            headline: 'IT Specialist',
+            headline: 'Platform Engineer',
             title: 'SetCookie.dev',
             description: 'Infrastructure, security, and automation. Technical writing, projects, and homelab demos.',
             favicon: 'img/cookie-favicon.svg',
@@ -59,8 +59,8 @@
         },
         'localhost': {
             brand: 'Jeff Kuechenmeister',
-            headline: 'IT Specialist',
-            title: 'Jeff Kuechenmeister | IT Specialist',
+            headline: 'Platform Engineer',
+            title: 'Jeff Kuechenmeister | Platform Engineer',
             description: 'IT specialist building enterprise infrastructure, security systems, and automation for regulated environments.',
             favicon: 'favicon.svg',
             faviconType: 'image/svg+xml',
@@ -68,8 +68,8 @@
         },
         '127.0.0.1': {
             brand: 'Jeff Kuechenmeister',
-            headline: 'IT Specialist',
-            title: 'Jeff Kuechenmeister | IT Specialist',
+            headline: 'Platform Engineer',
+            title: 'Jeff Kuechenmeister | Platform Engineer',
             description: 'IT specialist building enterprise infrastructure, security systems, and automation for regulated environments.',
             favicon: 'favicon.svg',
             faviconType: 'image/svg+xml',
@@ -123,25 +123,9 @@
             faviconLink.setAttribute('type', config.faviconType);
         }
 
-        // Check demo server status
-        checkDemoStatus();
+        // demos-status is rendered server-side now (static HTML cards + a
+        // fallback line). Router no longer writes to it -- see the
+        // Demos section in index.html.
     });
-
-    /**
-     * Check if homelab demo servers are reachable.
-     * On GitHub Pages (no homelab), demos show as offline.
-     */
-    function checkDemoStatus() {
-        var statusEl = document.getElementById('demos-status');
-        if (!statusEl) return;
-
-        // Demo endpoints to check (will be populated as demos are added)
-        var demos = [];
-
-        if (demos.length === 0) {
-            statusEl.textContent = 'Demos coming soon. Check back later.';
-            return;
-        }
-    }
 
 })();

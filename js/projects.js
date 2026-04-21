@@ -1,20 +1,27 @@
 /**
  * Dynamic Projects Loader
  *
- * Fetches public repos from GitHub API and renders project cards.
- * Filters: non-forked, has description.
- * Caches in sessionStorage to avoid hitting the 60 req/hr unauthenticated limit.
+ * Fetches public repos from GitHub API and renders project cards for
+ * only the repos that carry the "portfolio" topic on GitHub.
  *
- * To control which repos appear: add a description on GitHub.
- * Repos without descriptions are hidden.
+ * To include a repo: add the topic "portfolio" in the repo's GitHub
+ * settings (repo -> About -> gear icon -> Topics).
+ * To exclude a repo: remove that topic.
+ *
+ * This gives user-visible control of the card list without editing
+ * code. Non-forked + topic + description are all required.
  */
 
 (function() {
     'use strict';
 
     var GITHUB_USER = 'jvkuechen';
+    var PORTFOLIO_TOPIC = 'portfolio';
     var API_URL = 'https://api.github.com/users/' + GITHUB_USER + '/repos?per_page=100&type=public';
     var CACHE_KEY = 'jvk_github_repos';
+    // Bumped on filter change so stale cached lists from the old
+    // "has description" rule get invalidated on next load.
+    var CACHE_VERSION = 2;
     var CACHE_TTL = 10 * 60 * 1000; // 10 minutes
 
     document.addEventListener('DOMContentLoaded', loadProjects);
@@ -50,7 +57,11 @@
     function filterRepos(repos) {
         return repos
             .filter(function(r) {
-                return !r.fork && r.description && r.description.trim().length > 0;
+                return !r.fork
+                    && r.description
+                    && r.description.trim().length > 0
+                    && Array.isArray(r.topics)
+                    && r.topics.indexOf(PORTFOLIO_TOPIC) !== -1;
             })
             .sort(function(a, b) {
                 // Sort by most recently pushed
@@ -123,6 +134,12 @@
             var raw = sessionStorage.getItem(CACHE_KEY);
             if (!raw) return null;
             var data = JSON.parse(raw);
+            // Version check so a filter change invalidates stale caches
+            // without requiring users to manually clear sessionStorage.
+            if (data.version !== CACHE_VERSION) {
+                sessionStorage.removeItem(CACHE_KEY);
+                return null;
+            }
             if (Date.now() - data.timestamp > CACHE_TTL) {
                 sessionStorage.removeItem(CACHE_KEY);
                 return null;
@@ -136,6 +153,7 @@
     function cacheRepos(repos) {
         try {
             sessionStorage.setItem(CACHE_KEY, JSON.stringify({
+                version: CACHE_VERSION,
                 timestamp: Date.now(),
                 repos: repos
             }));

@@ -27,61 +27,21 @@
     var conversationHistory = [];
 
     // Initialize on DOM ready
+    // Initialize on DOM ready.
+    // We keep transient convo history in localStorage so the AI guide
+    // has context across page scrolls within a single visit. No tracking,
+    // no identifying data, nothing shared with a third party. The site
+    // doesn't use browser cookies.
     document.addEventListener('DOMContentLoaded', function() {
-        var consentGiven = localStorage.getItem('cookieConsent');
-        if (!consentGiven) {
-            showCookieConsentPopup();
-        } else {
-            initializeChat();
-        }
+        initializeChat();
     });
-
-    // Show cookie consent popup
-    function showCookieConsentPopup() {
-        var chatWidget = document.getElementById('chat-widget');
-        chatWidget.classList.add('expanded');
-        chatWidget.classList.add('cookie-consent');
-
-        var chatHeader = document.getElementById('chat-header');
-        chatHeader.style.display = 'none';
-
-        var chatWindowTitle = document.getElementById('chat-window-title');
-        chatWindowTitle.innerText = 'Cookie Consent';
-
-        document.getElementById('cookie-consent-message').style.display = 'block';
-        document.getElementById('chat-content').style.display = 'none';
-    }
-
-    // Accept cookies
-    window.acceptCookies = function() {
-        localStorage.setItem('cookieConsent', 'true');
-        initializeChat();
-    };
-
-    // Reject cookies
-    window.rejectCookies = function() {
-        localStorage.setItem('cookieConsent', 'false');
-        initializeChat();
-    };
 
     // Initialize chat
     function initializeChat() {
-        var consentGiven = localStorage.getItem('cookieConsent');
         var chatWidget = document.getElementById('chat-widget');
-        chatWidget.classList.remove('cookie-consent');
-
         var chatWindowTitle = document.getElementById('chat-window-title');
         chatWindowTitle.innerText = 'AI Guide';
-
-        document.getElementById('cookie-consent-message').style.display = 'none';
         document.getElementById('chat-content').style.display = 'flex';
-
-        // Show warning if cookies rejected
-        if (consentGiven === 'false') {
-            document.getElementById('cookie-warning').style.display = 'block';
-        } else {
-            document.getElementById('cookie-warning').style.display = 'none';
-        }
 
         // Restore chat header
         var chatHeader = document.getElementById('chat-header');
